@@ -9,14 +9,14 @@ def what_time_is_it(lang, filename):
     filename (str) - the filename into which the audio should be recorded
     '''
     #raise RuntimeError("You need to write this part!")
-     (date, time) = datetime.datetime.now().isoformat().split("T")
+    (date, time) = datetime.datetime.now().isoformat().split("T")
     (hour, minutes, seconds) = time.split(":")
     if lang=="en":
         text = hour+" hours and "+minutes+" minutes"
     elif lang=="ja":
         text = hour+"時"+minutes+"分です"
     elif lang=="zh":
-        text = "现在是"+hour+"点"+"分"
+        text = "现在是"+hour+"点"+minutes+"分"
     else:
         text="I'm sorry, I don't know that language"
     gtts.gTTS(text,lang=lang).save(filename)
@@ -50,7 +50,7 @@ def what_day_is_it(lang, audiofile):
     url (str) - URL that you can look up in order to see the calendar for this month and year
     '''
     #raise RuntimeError("You need to write this part!")
-today = datetime.date.today()
+    today = datetime.date.today()
     year = today.year
     month = today.month
     day = today.day
@@ -81,7 +81,7 @@ def personal_assistant(lang, filename):
     filename (str) - filename in which to store the result
     '''
     #raise RuntimeError("You need to write this part!")
-def personal_assistant(lang, filename):
+
     if lang=="en":
         keywords = ["what time", "joke", "what day", "I'm sorry, I didn't understand you"]
     elif lang=="ja":
@@ -89,7 +89,7 @@ def personal_assistant(lang, filename):
     elif lang=="zh":
         keywords = ["几奌","玩笑","什么日子","对不起，我没听懂你的话"]
     else:
-        gtts.gTTs.("I don't know that language!",lang="en",filename)
+        speech_package.synthesize("I don't know that language!","en",filename)
         return
 
     r = speech_recognition.Recognizer()
